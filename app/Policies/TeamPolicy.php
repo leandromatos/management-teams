@@ -17,7 +17,7 @@ class TeamPolicy
      * @param  \App\Team   $team
      * @return boolean
      */
-    public function store(User $user, Team $team)
+    public function update(User $user, Team $team)
     {
         if (!$team->isOwnedBy($user)) {
             abort(403, 'You are not the owner of this team.');
