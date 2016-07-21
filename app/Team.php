@@ -85,6 +85,28 @@ class Team extends Model
     }
 
     /**
+     * Check if the team is owned by user
+     *
+     * @param  User $user
+     *
+     * @return boolean
+     */
+    public function isOwnedBy(User $user)
+    {
+        return $this->user_id == $user->id;
+    }
+
+    /**
+     * Checked if the team is maxed out
+     *
+     * @return boolean
+     */
+    public function isMaxedOut()
+    {
+        return $this->count() >= $this->size;
+    }
+
+    /**
      * Guard against too many members of the team
      *
      * @return \Exception

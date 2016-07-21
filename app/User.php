@@ -43,4 +43,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Team::class);
     }
+
+    /**
+     * Checks if the user is admin
+     *
+     * @return boolean
+     */
+    public function isAdmin()
+    {
+        return $this->permission == 'administrator';
+    }
 }
