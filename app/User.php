@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    use HasRoles;
     /**
      * The attributes that are mass assignable.
      *
@@ -42,15 +43,5 @@ class User extends Authenticatable
     public function teamsParticipating()
     {
         return $this->belongsToMany(Team::class);
-    }
-
-    /**
-     * Checks if the user is admin
-     *
-     * @return boolean
-     */
-    public function isAdmin()
-    {
-        return $this->permission == 'administrator';
     }
 }

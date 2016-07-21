@@ -1,5 +1,6 @@
 <?php
 
+use App\Role;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -12,10 +13,14 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class)->create([
-            'permission' => 'administrator',
-        ]);
+        factory(User::class, 10)->create();
 
-        factory(User::class, 9)->create();
+        $userOne = User::find(1);
+        $admin   = Role::find(1);
+        $userOne->assignRole($admin);
+
+        $userTwo = User::find(2);
+        $manager = Role::find(2);
+        $userTwo->assignRole($manager);
     }
 }

@@ -16,13 +16,16 @@ class TeamsSeeder extends Seeder
         $teamOne = factory(Team::class)->create([
             'user_id' => 1,
         ]);
-
         $teamOne->add(User::where('id', '!=', 1)->take(2)->get());
 
         $teamTwo = factory(Team::class)->create([
             'user_id' => 2,
         ]);
-
         $teamTwo->add(User::where('id', '!=', 2)->take(4)->get());
+
+        $teamThree = factory(Team::class)->create([
+            'user_id' => 3,
+        ]);
+        $teamThree->add(User::where('id', '!=', 3)->take(2)->get());
     }
 }

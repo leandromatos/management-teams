@@ -3,21 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Team;
-use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
     /**
-     * Update the specified resource in storage.
+     * Display the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Team $team
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Team $team)
+    public function show(Team $team)
+    {
+        return view('team.show')->with(compact('team'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Team $team
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Team $team)
     {
         $this->authorize($team);
 
-        return 'Update the team.';
+        return view('team.edit')->with(compact('team'));
     }
 }

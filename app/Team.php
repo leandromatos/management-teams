@@ -18,11 +18,11 @@ class Team extends Model
     /**
      * Defines relationship for fetch owner of the team
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function owner()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**
@@ -58,7 +58,7 @@ class Team extends Model
     public function remove($users)
     {
         if ($users instanceof User) {
-            return $this->members()->detach($user->id);
+            return $this->members()->detach($users->id);
         }
 
         return $this->members()->detach($users->pluck('id')->all());

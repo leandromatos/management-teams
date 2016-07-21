@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Team;
 use App\User;
+use Gate;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TeamPolicy
@@ -17,8 +18,12 @@ class TeamPolicy
      * @param  \App\Team   $team
      * @return boolean
      */
-    public function update(User $user, Team $team)
+    public function edit(User $user, Team $team)
     {
+        if (Gate::check('edit_team')) {
+            return true;
+        }
+
         if (!$team->isOwnedBy($user)) {
             abort(403, 'You are not the owner of this team.');
         }
