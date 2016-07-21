@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'permission',
     ];
 
     /**
@@ -23,4 +23,24 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Defines relationship for fetch teams user-owned
+     *
+     * @return @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function ownedTeams()
+    {
+        return $this->hasMany(Team::class);
+    }
+
+    /**
+     * Defines relationship for fetch teams that user participates
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function teamsParticipating()
+    {
+        return $this->belongsToMany(Team::class);
+    }
 }
